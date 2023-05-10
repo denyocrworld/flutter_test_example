@@ -43,45 +43,53 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          TextFormField(
-            key: const Key("email"),
-            controller: _emailController,
-            decoration: const InputDecoration(
-              labelText: "Email",
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return "Mohon isi email";
-              }
-              return null;
-            },
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Login Form"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TextFormField(
+                key: const Key("email"),
+                controller: _emailController,
+                decoration: const InputDecoration(
+                  labelText: "Email",
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Mohon isi email";
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16.0),
+              TextFormField(
+                key: const Key("password"),
+                controller: _passwordController,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  labelText: "Password",
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Mohon isi password";
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: _onLoginButtonPressed,
+                child: const Text("Login"),
+              ),
+            ],
           ),
-          const SizedBox(height: 16.0),
-          TextFormField(
-            key: const Key("password"),
-            controller: _passwordController,
-            obscureText: true,
-            decoration: const InputDecoration(
-              labelText: "Password",
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return "Mohon isi password";
-              }
-              return null;
-            },
-          ),
-          const SizedBox(height: 16.0),
-          ElevatedButton(
-            onPressed: _onLoginButtonPressed,
-            child: const Text("Login"),
-          ),
-        ],
+        ),
       ),
     );
   }
